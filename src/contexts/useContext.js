@@ -1,8 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getUser, getActivity, getAverageSessions, getPerformance } from "../api/fetchApi";
-// import { fetchData } from "./fetchData";
-// import { apiUrl } from "./apiUrl";
+import PropsTypes from "prop-types";
 
 const ApiContext = createContext();
 
@@ -40,4 +39,8 @@ export const ApiProvider = ({ children }) => {
       {children}
     </ApiContext.Provider>
   );
+};
+
+ApiProvider.propTypes = {
+  children: PropsTypes.node.isRequired,
 };
