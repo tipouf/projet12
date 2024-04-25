@@ -1,17 +1,34 @@
-import React from "react";
+import { useEffect, useContext, useState } from "react";
+import { useParams } from "react-router-dom";
+import { ApiContext } from "../../providers/useContext";
+import { DailyActivity } from "../../components";
 import "./Dashboard.scss";
 
-const dashboard = () => {
+const Dashboard = () => {
+  const { id } = useParams();
+  const { setId, user } = useContext(ApiContext);
+
+  const  [userData, setUserData] = useState(null);
+
+
+
+  useEffect(() => {
+    setId(id);
+    setUserData(user);
+  }, [id, setId, user]);
+
   return (
     <div className="dashboard">
       <div className="dashboard__user">
-        <div className="dashboard__user--name">Bonjour Thomas</div>
+        <div className="dashboard__user--name">
+          <h1>{userData?.data.userInfos.firstName} {userData?.data.userInfos.lastName}</h1>
+      </div>
       </div>
 
       <div className="dashboard__activity">
         <div className="dashboard__activity__graph">
           <div className="dashboard__activity__graph__chart">
-            <h1>Charts</h1>
+            <DailyActivity />
           </div>
           <div className="dashboard__activity__graph__stats">
             <div className="dashboard__activity__graph__stats--card">
@@ -44,4 +61,4 @@ const dashboard = () => {
   );
 };
 
-export default dashboard;
+export default Dashboard;
