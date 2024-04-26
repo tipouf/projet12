@@ -1,34 +1,31 @@
 import { useEffect, useContext, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ApiContext } from "../../providers/useContext";
-import { DailyActivity } from "../../components";
+import { Activity } from "../../components";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
   const { id } = useParams();
   const { setId, user } = useContext(ApiContext);
 
-  const  [userData, setUserData] = useState(null);
-
-
-
   useEffect(() => {
     setId(id);
-    setUserData(user);
-  }, [id, setId, user]);
+  }, [id, setId]);
 
   return (
     <div className="dashboard">
       <div className="dashboard__user">
         <div className="dashboard__user--name">
-          <h1>{userData?.data.userInfos.firstName} {userData?.data.userInfos.lastName}</h1>
+          <h1>{user?.firstName} {user?.lastName}</h1>
       </div>
       </div>
 
       <div className="dashboard__activity">
         <div className="dashboard__activity__graph">
           <div className="dashboard__activity__graph__chart">
-            <DailyActivity />
+            <Link to={`/user/${id}/activity`}>
+              <Activity />
+            </Link>
           </div>
           <div className="dashboard__activity__graph__stats">
             <div className="dashboard__activity__graph__stats--card">
