@@ -1,3 +1,4 @@
+import {NumberToDay} from '../utils/date.js'
 const url = "http://localhost";
 const port = "3000";
 
@@ -27,13 +28,21 @@ const getActivity = async (id) => {
 
 const getAverageSessions = async (id) => {
   const response = await fetch(`${url}:${port}/user/${id}/average-sessions`);
-  const averageSessions = await response.json();
+  const {data} = await response.json();
+  const averageSessions = data.sessions.map((session) => {
+    return {
+      ...session,
+      day: NumberToDay(session.day),
+    };
+  })
   return averageSessions;
 };
 
 const getPerformance = async (id) => {
   const response = await fetch(`${url}:${port}/user/${id}/performance`);
-  const performance = await response.json();
+  const data = await response.json();
+  const { data: performance } = data;
+
   return performance;
 };
 

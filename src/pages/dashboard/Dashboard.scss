@@ -5,12 +5,19 @@
   flex-direction: column;
 
   &__user {
-    height: 20%;
+    height: 15%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    background-color: yellow;
+    justify-content: space-around;
+
+    & h1 {
+      color: black;
+    }
+
+    &__name {
+      color: red;
+    }
   }
 
   &__activity {
@@ -50,11 +57,11 @@
       width: 20%;
       background-color: green;
 
-	  &--card {
-		height: 25%;
-		width: 100%;
-		background-color: blue;
-	  }
+      &--card {
+        height: 25%;
+        width: 100%;
+        background-color: blue;
+      }
     }
   }
 }
