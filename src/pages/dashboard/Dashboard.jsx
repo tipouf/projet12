@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ApiContext } from "../../providers/useContext";
-import { Activity, AverageSessions } from "../../components";
+import { Activity, AverageSessions, RadarChart } from "../../components";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
@@ -17,7 +17,8 @@ const Dashboard = () => {
       <div className="dashboard__user">
         <div>
           <h1>
-            Bonjour <span className="dashboard__user__name">{user?.firstName}</span>
+            Bonjour{" "}
+            <span className="dashboard__user__name">{user?.firstName}</span>
           </h1>
         </div>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
@@ -33,11 +34,13 @@ const Dashboard = () => {
           <div className="dashboard__activity__graph__stats">
             <div className="dashboard__activity__graph__stats--card">
               <Link to={`/user/${id}/average-sessions`}>
-            <AverageSessions />
+                <AverageSessions />
               </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
-              <h1>Stats</h1>
+              <Link to={`/user/${id}/radar`}>
+                <RadarChart />
+              </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
               <h1>Stats</h1>

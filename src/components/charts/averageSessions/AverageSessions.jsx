@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ApiContext } from "../../../providers/useContext";
+import { useParams } from "react-router-dom";
 import "./AverageSessions.scss";
 import PropsTypes from "prop-types";
 import {
@@ -14,9 +15,13 @@ import {
 } from "recharts";
 
 const AverageSessions = () => {
-  const { averageSessions } = useContext(ApiContext);
+  const { averageSessions , setId } = useContext(ApiContext);
 
-  console.log("averageSessions", averageSessions);
+  const { id } = useParams();
+  useEffect(() => {
+    setId(id);
+  }, [id, setId]);
+
   return (
     <ResponsiveContainer
       width="100%"
