@@ -21,8 +21,7 @@ const RadarChartComponent = () => {
 
   const dataPerformance = useMemo(() => {
     if (!performance) return null;
-    const data = performance.data;
-    return data;
+    return performance
   }, [performance]);
 
 
@@ -30,7 +29,8 @@ const RadarChartComponent = () => {
     <ResponsiveContainer
       width="100%"
       height="100%"
-      className="rounded-md bg-[#282D30]"
+      className="radar"
+      id="radar"
     >
       <RadarChart outerRadius="69%" data={dataPerformance}>
         <PolarGrid radialLines={false} />

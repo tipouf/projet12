@@ -3,4 +3,5 @@ import SideMenu from "./sideMenu/SideMenu";
 import Activity from "./charts/activity/Activity";
 import AverageSessions from "./charts/averageSessions/AverageSessions";
 import RadarChart from "./charts/radar/Radar";
-export { Header, SideMenu, Activity, AverageSessions, RadarChart };
+import Score from "./charts/score/Score";
+export { Header, SideMenu, Activity, AverageSessions, RadarChart, Score };

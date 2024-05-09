@@ -1,0 +1,26 @@
+.score {
+    display: flex;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    align-items: center;
+    &__value {
+        font-size: 36px;
+    }
+    &__text {
+        font-size: 14px;
+    }
+
+    &__chart {
+        position: relative;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__title {
+        font-size: 24px;
+    }
+}

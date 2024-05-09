@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ApiContext } from "../../../providers/useContext";
+import { useParams } from "react-router-dom";
 import {
   BarChart,
   Bar,
@@ -24,7 +25,13 @@ const ActivityTooltip = ({ active, payload }) => {
   return null;
 };
 const Activity = () => {
-  const { activity } = useContext(ApiContext);
+  const { activity , setId } = useContext(ApiContext);
+
+  const { id } = useParams();
+  useEffect(() => {
+    setId(id);
+  }, [id, setId]);
+
 
   return (
     <>

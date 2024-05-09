@@ -7,7 +7,9 @@
  * @return the corresponding day of the week in uppercase letters (Monday,
  *         Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) or "Error"
  */
-const NumberToDay = (n) => "MTWTFSS"[n - 1] || "Error";
+const NumberToDay = (n) => "LMMJVSD"[n - 1] || "Error";
+
+const NumberToKind = (n) => ["Cardio", "Energie", "Endurance", "Force", "Vitesse", "Intensite"][n - 1] || "Error";
 
 /**
  * A function that returns the day of the month from a given date.
@@ -20,4 +22,4 @@ const GetDay = (n) =>
     ? new Date(n).toLocaleDateString().slice(1, 2)
     : new Date(n).toLocaleDateString().slice(0, 2);
 
-export { NumberToDay, GetDay };
+export { NumberToDay, NumberToKind, GetDay };

@@ -1,7 +1,8 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ApiContext } from "../../providers/useContext";
-import { Activity, AverageSessions, RadarChart } from "../../components";
+import { Activity, AverageSessions, RadarChart, Score } from "../../components";
+import { apple, burger, hot, meat } from "../../assets/index.js";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
@@ -10,17 +11,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     setId(id);
-  }, [id, setId]);
+    console.log("user", user);
+  }, [id, setId, user]);
 
   return (
     <div className="dashboard">
       <div className="dashboard__user">
-        <div>
-          <h1>
-            Bonjour{" "}
-            <span className="dashboard__user__name">{user?.firstName}</span>
-          </h1>
-        </div>
+        <h1>
+          Bonjour&nbsp;
+          <span className="dashboard__user__name">{user?.firstName}</span>
+        </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>
 
@@ -43,22 +43,54 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
-              <h1>Stats</h1>
+              <Score todayScore={user?.todayScore} />
             </div>
           </div>
         </div>
         <div className="dashboard__activity__stats">
           <div className="dashboard__activity__stats--card">
-            <h1>Stats</h1>
+            <div className="dashboard__activity__stats--card__template">
+              <div className="square">
+                <img src={apple} alt="apple" />
+              </div>
+              <div className="dashboard__activity__stats--card__template__text">
+                <p>Proteines</p>
+                <p>Proteines</p>
+              </div>
+            </div>
           </div>
           <div className="dashboard__activity__stats--card">
-            <h1>Stats</h1>
+          <div className="dashboard__activity__stats--card__template">
+              <div className="square">
+                <img src={apple} alt="apple" />
+              </div>
+              <div className="dashboard__activity__stats--card__template__text">
+                <p>Proteines</p>
+                <p>Proteines</p>
+              </div>
+            </div>
           </div>
           <div className="dashboard__activity__stats--card">
-            <h1>Stats</h1>
+          <div className="dashboard__activity__stats--card__template">
+              <div className="square">
+                <img src={apple} alt="apple" />
+              </div>
+              <div className="dashboard__activity__stats--card__template__text">
+                <p>Proteines</p>
+                <p>Proteines</p>
+              </div>
+            </div>
           </div>
           <div className="dashboard__activity__stats--card">
-            <h1>Stats</h1>
+          <div className="dashboard__activity__stats--card__template">
+              <div className="square">
+                <img src={apple} alt="apple" />
+              </div>
+              <div className="dashboard__activity__stats--card__template__text">
+                <p>Proteines</p>
+                <p>Proteines</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

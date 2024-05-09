@@ -10,7 +10,7 @@ const AllRoutes = () => {
       <Route path="/user/:id/activity" element={< Activity />} />
       <Route path="/user/:id/average-sessions" element={<AverageSessions />} />
       <Route path="/user/:id/radar" element={<RadarChart />} />
-      <Route path="/" element={<Dashboard />} />
+      <Route path="*" element={<Navigate to="/user/12" />} />
     </Routes>
   );
 };

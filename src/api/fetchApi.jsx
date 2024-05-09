@@ -1,4 +1,4 @@
-import {NumberToDay, GetDay} from '../utils/date.js'
+import { NumberToDay, NumberToKind, GetDay } from "../utils/utils.js";
 const url = "http://localhost";
 const port = "3000";
 
@@ -6,14 +6,23 @@ const getUser = async (id) => {
   try {
     const response = await fetch(`${url}:${port}/user/${id}`);
     const { data } = await response.json();
-    const { userInfos } = data;
-    return userInfos;
+    const { userInfos, keyData, todayScore} = data;
+
+    return {
+      ...userInfos,
+      todayScore,
+      keyData: {
+        calorieCount: keyData.calorieCount,
+        proteinCount: keyData.proteinCount,
+        carbohydrateCount: keyData.carbohydrateCount,
+        lipidCount: keyData.lipidCount,
+      },
+    };
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
-
 
 const getActivity = async (id) => {
   try {
@@ -23,7 +32,7 @@ const getActivity = async (id) => {
     const activity = sessions.map((session) => {
       return {
         ...session,
-        day: GetDay(session.day)
+        day: GetDay(session.day),
       };
     });
 
@@ -33,7 +42,6 @@ const getActivity = async (id) => {
     throw error;
   }
 };
-
 
 const getAverageSessions = async (id) => {
   try {
@@ -53,18 +61,35 @@ const getAverageSessions = async (id) => {
   }
 };
 
-
+/**
+ * Retrieves the performance data for a given user ID.
+ *
+ * @param {number} id - The ID of the user.
+ * @return {Promise<Array>} A promise that resolves to an array of performance data.
+ * Each item in the array contains the following properties:
+ * - value: The value of the performance data.
+ * - kind: The kind of performance data (mapped from the original kind ID).
+ * @throws {Error} If there is an error during the fetch request or parsing the response.
+ */
 const getPerformance = async (id) => {
   try {
     const response = await fetch(`${url}:${port}/user/${id}/performance`);
-    const dataResponse = await response.json();
-    const { data: performance } = dataResponse;
+    const { data: dataResponse } = await response.json();
+    const { data, kind } = dataResponse;
+
+    const performance = data.map((item) => {
+      return {
+        ...item,
+        kind: NumberToKind(item.kind),
+        // kind: kind[item.kind],
+      };
+    });
+
     return performance;
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
-
 
 export { getUser, getActivity, getAverageSessions, getPerformance };

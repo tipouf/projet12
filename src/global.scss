@@ -8,7 +8,7 @@ $font-secondary-size: 16px;
 :root {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 500;
   background-color: #ffffff;
 
   font-synthesis: none;
@@ -38,8 +38,6 @@ body {
   -webkit-user-select: none;
   user-select: auto; /* prevent copy paste, to allow, change 'none' to 'text' */
   background-attachment: fixed;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
   margin: 0 auto; /* center the body horizontally */
 }
 
