@@ -1,22 +1,43 @@
 import { NumberToDay, NumberToKind, GetDay } from "../utils/utils.js";
 const url = "http://localhost";
 const port = "3000";
+import { apple, burger, hot, meat } from "../assets/index.js";
 
 const getUser = async (id) => {
   try {
     const response = await fetch(`${url}:${port}/user/${id}`);
     const { data } = await response.json();
-    const { userInfos, keyData, todayScore} = data;
+    const { userInfos, keyData, todayScore } = data;
 
     return {
       ...userInfos,
       todayScore,
-      keyData: {
-        calorieCount: keyData.calorieCount,
-        proteinCount: keyData.proteinCount,
-        carbohydrateCount: keyData.carbohydrateCount,
-        lipidCount: keyData.lipidCount,
-      },
+      keyData: [
+        {
+          id: 1,
+          name: "calorieCount",
+          value: keyData.calorieCount.toLocaleString("en"),
+          icon: hot,
+        },
+        {
+          id: 2,
+          name: "proteinCount",
+          value: keyData.proteinCount,
+          icon: meat,
+        },
+        {
+          id: 3,
+          name: "carbohydrateCount",
+          value: keyData.carbohydrateCount,
+          icon: apple,
+        },
+        {
+          id: 4,
+          name: "lipidCount",
+          value: keyData.lipidCount,
+          icon: burger,
+        },
+      ],
     };
   } catch (error) {
     console.error(error);

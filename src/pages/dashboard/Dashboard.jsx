@@ -1,18 +1,24 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ApiContext } from "../../providers/useContext";
-import { Activity, AverageSessions, RadarChart, Score } from "../../components";
-import { apple, burger, hot, meat } from "../../assets/index.js";
+import {
+  Activity,
+  AverageSessions,
+  RadarChart,
+  Score,
+  Card,
+} from "../../components";
 import "./Dashboard.scss";
 
 const Dashboard = () => {
   const { id } = useParams();
   const { setId, user } = useContext(ApiContext);
 
-  useEffect(() => {
-    setId(id);
-    console.log("user", user);
-  }, [id, setId, user]);
+  useEffect(() => setId(id), [id, setId]);
+
+  const keyData = user?.keyData;
+
+  console.log(keyData);
 
   return (
     <div className="dashboard">
@@ -48,50 +54,11 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="dashboard__activity__stats">
-          <div className="dashboard__activity__stats--card">
-            <div className="dashboard__activity__stats--card__template">
-              <div className="square">
-                <img src={apple} alt="apple" />
-              </div>
-              <div className="dashboard__activity__stats--card__template__text">
-                <p>Proteines</p>
-                <p>Proteines</p>
-              </div>
+          {keyData?.map((keyData) => (
+            <div key={keyData.id} className="dashboard__activity__stats--card">
+              <Card keyData={keyData} />
             </div>
-          </div>
-          <div className="dashboard__activity__stats--card">
-          <div className="dashboard__activity__stats--card__template">
-              <div className="square">
-                <img src={apple} alt="apple" />
-              </div>
-              <div className="dashboard__activity__stats--card__template__text">
-                <p>Proteines</p>
-                <p>Proteines</p>
-              </div>
-            </div>
-          </div>
-          <div className="dashboard__activity__stats--card">
-          <div className="dashboard__activity__stats--card__template">
-              <div className="square">
-                <img src={apple} alt="apple" />
-              </div>
-              <div className="dashboard__activity__stats--card__template__text">
-                <p>Proteines</p>
-                <p>Proteines</p>
-              </div>
-            </div>
-          </div>
-          <div className="dashboard__activity__stats--card">
-          <div className="dashboard__activity__stats--card__template">
-              <div className="square">
-                <img src={apple} alt="apple" />
-              </div>
-              <div className="dashboard__activity__stats--card__template__text">
-                <p>Proteines</p>
-                <p>Proteines</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
