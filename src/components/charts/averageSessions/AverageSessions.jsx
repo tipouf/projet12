@@ -49,6 +49,7 @@ const AverageSessions = () => {
             dataKey="day"
             tick={{ fill: "#9B9EAC", fontSize: 24 }}
             axisLine={false}
+            tickLine={false}
           />
           <Line
             type="monotone"
