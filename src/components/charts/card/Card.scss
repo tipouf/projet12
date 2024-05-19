@@ -1,15 +1,54 @@
 .calorieCount {
-    background-color: #FBEAEA;
+  background-color: #fbeaea;
 }
 
 .proteinCount {
-    background-color: #E9F4FB;
+  background-color: #e9f4fb;
 }
 
 .lipidCount {
-    background-color: #FBF6E5;
+  background-color: #fbf6e5;
 }
 
 .carbohydrateCount {
-    background-color: #FBEAEF;
+  background-color: #fbeaef;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 20%;
+  width: 100%;
+  background-color: #fbfbfb;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+
+    p:first-child {
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    p:last-child {
+      font-size: 14px;
+      color: #74798c;
+    }
+  }
+
+  .square {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
 }

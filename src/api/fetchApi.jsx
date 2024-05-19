@@ -96,7 +96,7 @@ const getPerformance = async (id) => {
   try {
     const response = await fetch(`${url}:${port}/user/${id}/performance`);
     const { data: dataResponse } = await response.json();
-    const { data, kind } = dataResponse;
+    const { data } = dataResponse;
 
     const performance = data.map((item) => {
       return {

@@ -15,43 +15,51 @@ import {
 } from "recharts";
 
 const AverageSessions = () => {
-  const { averageSessions , setId } = useContext(ApiContext);
+  const { averageSessions, setId } = useContext(ApiContext);
 
   const { id } = useParams();
   useEffect(() => {
     setId(id);
   }, [id, setId]);
 
+  console.log(averageSessions);
+
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      className="average-sessions"
-      id="average-sessions"
-    >
-      <LineChart
-        data={averageSessions}
-        margin={{
-          top: 50,
-        }}
+    <div className="average-sessions">
+      <div className="average-sessions__title">
+        <div className="average-sessions__title_line">Durée moyennes des</div>
+        <div className="average-sessions__title_line">sessions</div>
+      </div>
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="average-sessions"
+        id="average-sessions"
       >
-        <XAxis
-          dataKey="day"
-          tick={{ fill: "#9B9EAC", fontSize: 24 }}
-          axisLine={false}
-          
-        />
-        <Legend iconType="circle" verticalAlign="top" />
-        <Line
-          type="monotone"
-          dataKey="sessionLength"
-          stroke="white"
-          dot={false}
-          strokeWidth={2}
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
-    </ResponsiveContainer>
+        <LineChart
+          data={averageSessions}
+          margin={{
+            top: 50,
+            right: 20,
+            left: 20,
+            bottom: 20,
+          }}
+        >
+          <XAxis
+            dataKey="day"
+            tick={{ fill: "#9B9EAC", fontSize: 24 }}
+            axisLine={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="sessionLength"
+            stroke="white"
+            dot={false}
+            strokeWidth={2}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
   );
 };
 

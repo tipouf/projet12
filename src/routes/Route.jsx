@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Dashboard from "../pages/dashboard/Dashboard";
+import Error404 from "../pages/error/Error404";
 import { Activity, AverageSessions, RadarChart } from "../components";
 
 const AllRoutes = () => {
@@ -10,7 +11,7 @@ const AllRoutes = () => {
       <Route path="/user/:id/activity" element={< Activity />} />
       <Route path="/user/:id/average-sessions" element={<AverageSessions />} />
       <Route path="/user/:id/radar" element={<RadarChart />} />
-      <Route path="*" element={<Navigate to="/user/12" />} />
+      <Route path="*" element={<Error404 />} />
     </Routes>
   );
 };

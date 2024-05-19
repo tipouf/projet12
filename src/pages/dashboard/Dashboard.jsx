@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ApiContext } from "../../providers/useContext";
+import Error404 from "../error/Error404";
 import {
   Activity,
   AverageSessions,
@@ -18,7 +19,7 @@ const Dashboard = () => {
 
   const keyData = user?.keyData;
 
-  console.log(keyData);
+  if (!keyData) return <Error404 />;
 
   return (
     <div className="dashboard">
@@ -55,9 +56,7 @@ const Dashboard = () => {
         </div>
         <div className="dashboard__activity__stats">
           {keyData?.map((keyData) => (
-            <div key={keyData.id} className="dashboard__activity__stats--card">
-              <Card keyData={keyData} />
-            </div>
+              <Card keyData={keyData} key={keyData.id} />
           ))}
         </div>
       </div>

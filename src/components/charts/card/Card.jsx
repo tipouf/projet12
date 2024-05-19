@@ -5,11 +5,11 @@ import "./Card.scss";
 const Card = ({ keyData: { name, value, icon } }) => {
 
   return (
-    <>
+    <div className="card">
       <div className={`square ${name}`}>
         <img src={icon} alt="keyData.icon" />
       </div>
-      <div className="dashboard__activity__stats--card__text">
+      <div className="card__text">
         <p>{value} {name === "calorieCount" ? "kCal" : "g"}</p>
         <p>
         {
@@ -22,7 +22,7 @@ const Card = ({ keyData: { name, value, icon } }) => {
         }
       </p>
       </div>
-    </>
+    </div>
   );
 };
 

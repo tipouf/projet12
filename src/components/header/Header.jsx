@@ -1,5 +1,5 @@
 import "./Header.scss";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 

@@ -33,21 +33,20 @@ const RadarChartComponent = () => {
       id="radar"
     >
       <RadarChart outerRadius="69%" data={dataPerformance}>
-        <PolarGrid radialLines={false} />
+        <PolarGrid radialLines={false}
+          strokeWidth={2} />
         <PolarAngleAxis
           dataKey="kind"
-          className="text-[12px] text-white"
           stroke="white"
           tickLine={false}
           dy={4}
-          tickSize={15}
+          tickSize={20}
+          style={{ fontSize: '12px' }}
         />
         <PolarRadiusAxis tick={false} axisLine={false} />
         <Radar
           dataKey="value"
           fill="#FF0101B2"
-          fillOpacity={1}
-          stroke="#FF0101B2"
         />
       </RadarChart>
     </ResponsiveContainer>
