@@ -10,7 +10,7 @@ const Card = ({ keyData }) => {
         <img src={keyData.icon} alt="keyData.icon" />
       </div>
       <div className="card__text">
-        <p>{keyData.value} {keyData.name === "calorieCount" ? "kCal" : "g"}</p>
+        <p>{keyData.value}{keyData.name === "calorieCount" ? "kCal" : "g"}</p>
         <p>
         {
           {

@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
   position: relative;
   border-radius: 5px;
   background-color: #fbfbfb;
+  border: 20px solid #fbfbfb;
   
-
   &__title {
     position: absolute;
     top: 10px;
