@@ -2,15 +2,15 @@ import PropsTypes from "prop-types";
 
 import "./Card.scss";
 
-const Card = ({ keyData: { name, value, icon } }) => {
+const Card = ({ keyData }) => {
 
   return (
     <div className="card">
-      <div className={`square ${name}`}>
-        <img src={icon} alt="keyData.icon" />
+      <div className={`square ${keyData.name}`}>
+        <img src={keyData.icon} alt="keyData.icon" />
       </div>
       <div className="card__text">
-        <p>{value}{name === "calorieCount" ? "kCal" : "g"}</p>
+        <p>{keyData.value} {keyData.name === "calorieCount" ? "kCal" : "g"}</p>
         <p>
         {
           {
@@ -18,7 +18,7 @@ const Card = ({ keyData: { name, value, icon } }) => {
             proteinCount: "Proteines",
             lipidCount: "Glucides",
             carbohydrateCount: "Lipides",
-          }[name]
+          }[keyData.name]
         }
       </p>
       </div>
@@ -27,11 +27,7 @@ const Card = ({ keyData: { name, value, icon } }) => {
 };
 
 Card.propTypes = {
-  keyData: PropsTypes.exact({
-    name: PropsTypes.string.isRequired,
-    value: PropsTypes.number.isRequired,
-    icon: PropsTypes.string.isRequired,
-  }).isRequired,
+  keyData: PropsTypes.object
 };
 
 export default Card;

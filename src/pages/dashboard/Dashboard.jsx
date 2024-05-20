@@ -56,7 +56,7 @@ const Dashboard = () => {
         </div>
         <div className="dashboard__activity__stats">
           {keyData?.map((keyData) => (
-              <Card keyData={keyData} key={keyData.id} />
+            <Card keyData={keyData} key={keyData.id} />
           ))}
         </div>
       </div>
