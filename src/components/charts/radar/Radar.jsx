@@ -40,7 +40,6 @@ const RadarChartComponent = () => {
           stroke="white"
           tickLine={false}
           dy={4}
-          tickSize={20}
           style={{ fontSize: '12px' }}
         />
         <PolarRadiusAxis tick={false} axisLine={false} />

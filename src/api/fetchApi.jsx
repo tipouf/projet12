@@ -8,10 +8,11 @@ const getUser = async (id) => {
     const response = await fetch(`${url}:${port}/user/${id}`);
     const { data } = await response.json();
     const { userInfos, keyData, todayScore } = data;
+    const score = todayScore ?? data.score;
 
     return {
       ...userInfos,
-      todayScore,
+      score,
       keyData: [
         {
           id: 1,
@@ -50,6 +51,7 @@ const getActivity = async (id) => {
     const response = await fetch(`${url}:${port}/user/${id}/activity`);
     const { data } = await response.json();
     const { sessions } = data;
+    
     const activity = sessions.map((session) => {
       return {
         ...session,
@@ -68,12 +70,17 @@ const getAverageSessions = async (id) => {
   try {
     const response = await fetch(`${url}:${port}/user/${id}/average-sessions`);
     const { data } = await response.json();
+
+    console.log("data", data);
+
     const averageSessions = data.sessions.map((session) => {
       return {
         ...session,
         day: NumberToDay(session.day),
       };
     });
+
+    console.log("averageSessions", averageSessions);
 
     return averageSessions;
   } catch (error) {
@@ -98,11 +105,10 @@ const getPerformance = async (id) => {
     const { data: dataResponse } = await response.json();
     const { data } = dataResponse;
 
-    const performance = data.map((item) => {
+    const performance = data.reverse().map((item) => {
       return {
         ...item,
         kind: NumberToKind(item.kind),
-        // kind: kind[item.kind],
       };
     });
 

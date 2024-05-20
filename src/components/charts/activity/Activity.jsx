@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { ApiContext } from "../../../providers/useContext";
 import { useParams } from "react-router-dom";
+import { icon, iconRed } from "../../../assets/index.js";
 import {
   BarChart,
   Bar,
@@ -25,6 +26,17 @@ const ActivityTooltip = ({ active, payload }) => {
   }
   return null;
 };
+
+const LegendContent = () => {
+  return (
+    <p className="legend-content">
+      <img src={icon} alt="icon" className="legend-icon" />
+      <span> Poids (kg)</span>
+      <img src={iconRed} alt="icon" className="legend-icon red" />
+      <span> Calories brulées (kCal)</span>
+    </p>
+  );
+};
 const Activity = () => {
   const { activity, setId } = useContext(ApiContext);
 
@@ -36,73 +48,65 @@ const Activity = () => {
   return (
     <div className="activity">
       <div className="activity__title">Activité quotidienne</div>
-      <ResponsiveContainer width="100%" height="80%" id="activity">
-        <BarChart data={activity} barSize={7} barGap={8}>
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke="white"
-            vertical={false}
-          />
+      <div className="legend-container">
+        <Legend
+          iconType="circle"
+          iconSize={10}
+          layout="vertical"
+          verticalAlign="middle"
+          align="right"
+          content={<LegendContent />}
+        />
+      </div>
+
+      <ResponsiveContainer
+        width="100%"
+        height="80%"
+        className={"activity__chart"}
+      >
+        <BarChart data={activity} barGap={8} barCategoryGap={1}>
+          <CartesianGrid vertical={false} strokeDasharray="1 1" />
           <XAxis
             dataKey="day"
-            tick={{ fill: "#9B9EAC" }}
-            tickMargin={12}
             tickLine={false}
-            stroke="#DEDEDE"
-            strokeWidth={2}
+            tick={{ fontSize: 14, fill: "#9B9EAC" }}
+            dy={15}
+            stroke="1 1"
+            padding = {{left: -40, right: -40}}
           />
           <YAxis
-            dataKey={"calories"}
-            type="number"
-            orientation="right"
-            tick={{ fill: "#9B9EAC", fontSize: 24 }}
-            // tickLine={{ fill: "#9B9EAC" }}
-            axisLine={false}
-            tickCount={3}
-            domain={["dataMin - 150", "dataMax"]}
-            tickLine={false}
-          />
-          <YAxis yAxisId="kilogram" hide />
-          <Tooltip
-            content={<ActivityTooltip />}
-            wrapperStyle={{ x: -200, y: -250 }}
-          />
-          {/* <Legend wrapperStyle={{ fontSize: 24, color: "#9B9EAC" }} /> */}
-          <Bar
+            yAxisId="kilogram"
             dataKey="kilogram"
-            name={"Poids (kg)"}
+            type="number"
+            domain={["dataMin - 2", "dataMax + 1"]}
+            tickCount="4"
+            axisLine={false}
+            orientation="right"
+            tickLine={false}
+            tick={{ fontSize: 14, fill: "#9B9EAC" }}
+            dx={15}
+          />
+          <YAxis
+            yAxisId="calories"
+            dataKey="calories"
+            type="number"
+            domain={["dataMin - 20", "dataMax + 10"]}
+            hide={true}
+          />
+          <Tooltip content={<ActivityTooltip />} />
+          <Bar
+            yAxisId="kilogram"
+            dataKey="kilogram"
             fill="#282D30"
-            barSize={10}
-            radius={[10, 10, 0, 0]}
+            barSize={7}
+            radius={[50, 50, 0, 0]}
           />
           <Bar
+            yAxisId="calories"
             dataKey="calories"
             fill="#E60000"
-            barSize={10}
-            radius={[10, 10, 0, 0]}
-          />
-          <Legend
-            verticalAlign="top"
-            align="right"
-            iconType="circle"
-            iconSize={10}
-            height={50}
-            wrapperStyle={{ fontSize: 24, color: "#9B9EAC" }}
-            payload={[
-              {
-                id: "kilogram",
-                value: "Poids (kg)",
-                type: "circle",
-                fill: "#282D30",
-              },
-              {
-                id: "calories",
-                value: "Calories brûlées (kCal)",
-                type: "circle",
-                fill: "#E60000",
-                className: "calories",
-              },
-            ]}
+            barSize={7}
+            radius={[50, 50, 0, 0]}
           />
         </BarChart>
       </ResponsiveContainer>

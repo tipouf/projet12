@@ -1,18 +1,20 @@
 import { useContext, useEffect } from "react";
+import PropsTypes from "prop-types";
 import { ApiContext } from "../../../providers/useContext";
 import { useParams } from "react-router-dom";
 import "./AverageSessions.scss";
-import PropsTypes from "prop-types";
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  // CartesianGrid,
-  // Tooltip,
-  Legend,
-} from "recharts";
+import { ResponsiveContainer, LineChart, Line, XAxis, Tooltip } from "recharts";
+
+const ActivityTooltip = ({ active, payload }) => {
+  if (active) {
+    return (
+      <div className="activity-tooltip">
+        <p className="activity-tooltip__value">{payload[0].value} min</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const AverageSessions = () => {
   const { averageSessions, setId } = useContext(ApiContext);
@@ -22,7 +24,7 @@ const AverageSessions = () => {
     setId(id);
   }, [id, setId]);
 
-  console.log(averageSessions);
+  console.log("averageSessions);", averageSessions);
 
   return (
     <div className="average-sessions">
@@ -42,15 +44,20 @@ const AverageSessions = () => {
             top: 50,
             right: 20,
             left: 20,
-            bottom: 20,
+            bottom: 10,
           }}
+          style={{
+            opacity: 0.8,
+          }}
+          onMouseMove={(e) => console.log(e)}
         >
           <XAxis
             dataKey="day"
-            tick={{ fill: "#9B9EAC", fontSize: 24 }}
+            tick={{ fill: "white", fontSize: 12 }}
             axisLine={false}
             tickLine={false}
           />
+          <Tooltip content={<ActivityTooltip />} />
           <Line
             type="monotone"
             dataKey="sessionLength"
@@ -62,6 +69,11 @@ const AverageSessions = () => {
       </ResponsiveContainer>
     </div>
   );
+};
+
+ActivityTooltip.propTypes = {
+  active: PropsTypes.bool,
+  payload: PropsTypes.array,
 };
 
 export default AverageSessions;

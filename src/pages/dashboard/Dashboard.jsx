@@ -50,7 +50,7 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
-              <Score todayScore={user?.todayScore} />
+              <Score todayScore={user?.score} />
             </div>
           </div>
         </div>
