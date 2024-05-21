@@ -6,6 +6,7 @@ import {
   getPerformance,
   getUser,
   getMock,
+  getError
 } from "../api/fetchApi";
 
 export const ApiContext = createContext(null);
@@ -18,15 +19,17 @@ export const ApiProvider = ({ children }) => {
   const [activity, setActivity] = useState(null);
   const [performance, setPerformance] = useState(null);
 
+  
+
   useEffect(() => {
     if (!id) return;
     const fetchData = async () => {
-      const mock = getMock();
+      const mocked = getMock(mock);
       const user = await getUser(id);
       const averageSessions = await getAverageSessions(id);
       const activity = await getActivity(id);
       const performance = await getPerformance(id);
-      setMock(mock);
+      setMock(mocked);
       setUser(user);
       setAverageSessions(averageSessions);
       setActivity(activity);

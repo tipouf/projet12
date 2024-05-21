@@ -19,14 +19,15 @@ const Dashboard = () => {
 
   const keyData = user?.keyData;
 
-  if (!keyData) return <Error404 />;
+  if (!user) return <Error404 />;
+
 
   return (
     <div className="dashboard">
       <div className="dashboard__user">
         <h1>
           Bonjour&nbsp;
-          <span className="dashboard__user__name">{user?.firstName}{mock && " (MOCK)"}</span>
+          <span className="dashboard__user__name">{user?.firstName}{mock && "(MOCK)"}</span>
         </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>

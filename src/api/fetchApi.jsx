@@ -1,15 +1,22 @@
 import FormatData from "../utils/formData.js";
 import mockData from "../api/mock.json";
 
+
 const url = "http://localhost";
 const port = "3000";
 
-let mock = false;
+let mock = true;
+// let fetchError = false;
 const getMock = (value) => {
   if (value === undefined) return mock;
   mock = value;
 };
 
+// const getError = () => {
+//   console.log("fetchError", fetchError);
+//   return fetchError;
+
+// }
 const getUser = async (id) => {
   try {
     const mockedUser = mockData.USER_MAIN_DATA.find(
@@ -17,12 +24,13 @@ const getUser = async (id) => {
     );
     
     const response = await (mock ? Promise.resolve(mockedUser) : fetch(`${url}:${port}/user/${id}`));
+    if (response === undefined || response === null) {
+      throw new Error("No data");
+    }
     const data = mock ? mockedUser : (await response.json()).data;
-
     return new FormatData(data).FormatUserData()
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("error", error);
   }
 };
 
@@ -33,11 +41,9 @@ const getActivity = async (id) => {
     );
     const response = await (mock ? Promise.resolve(mockedActivity) : fetch(`${url}:${port}/user/${id}/activity`));
     const data = mock ? mockedActivity : (await response.json()).data;
-
     return new FormatData(data).FormatActivityData();
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("error");
   }
 };
 
@@ -53,7 +59,6 @@ const getAverageSessions = async (id) => {
     return new FormatData(data).FormatAverageSessionsData();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };
 
@@ -69,7 +74,6 @@ const getPerformance = async (id) => {
     return new FormatData(data).FormatPerformanceData();
   } catch (error) {
     console.error(error);
-    throw error;
   }
 };
 
