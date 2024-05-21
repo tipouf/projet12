@@ -18,8 +18,8 @@ import PropsTypes from "prop-types";
 const ActivityTooltip = ({ active, payload }) => {
   if (active) {
     return (
-      <div className="activity-tooltip">
-        <p className="activity-tooltip__value">{payload[0].value}kg</p>
+      <div className="activity-tooltips">
+        <p className="activity-tooltips__value">{payload[0].value}kg</p>
         <p>{payload[1].value}Kcal</p>
       </div>
     );
@@ -72,7 +72,7 @@ const Activity = () => {
             tick={{ fontSize: 14, fill: "#9B9EAC" }}
             dy={15}
             stroke="1 1"
-            padding = {{left: -40, right: -40}}
+            padding={{ left: -40, right: -40 }}
           />
           <YAxis
             yAxisId="kilogram"
@@ -93,7 +93,13 @@ const Activity = () => {
             domain={["dataMin - 20", "dataMax + 10"]}
             hide={true}
           />
-          <Tooltip content={<ActivityTooltip />} />
+          <Tooltip
+            content={<ActivityTooltip />}
+            cursor={{ fill: "rgba(0,0,0,0.1)" }}
+            wrapperStyle={{ outline: "none" }}
+            offset={-50}
+            itemStyle={{ display: "none" }}
+          />
           <Bar
             yAxisId="kilogram"
             dataKey="kilogram"

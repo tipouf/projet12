@@ -24,8 +24,6 @@ const AverageSessions = () => {
     setId(id);
   }, [id, setId]);
 
-  console.log("averageSessions);", averageSessions);
-
   return (
     <div className="average-sessions">
       <div className="average-sessions__title">

@@ -45,7 +45,7 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
-              <Link to={`/user/${id}/radar`}>
+              <Link to={`/user/${id}/performance`}>
                 <RadarChart />
               </Link>
             </div>
