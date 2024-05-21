@@ -1,0 +1,98 @@
+$color-primary: black;
+$color-secondary: white;
+$color-tertiary: #ff6060;
+
+$font-primary-size: 24px;
+$font-secondary-size: 16px;
+
+:root {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.5;
+  font-weight: 500;
+  background-color: #ffffff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: black;
+  text-decoration: inherit;
+  font-size: 24px;
+}
+a:hover {
+  color: #535bf2;
+}
+
+a.active {
+  text-decoration: underline;
+}
+
+body {
+  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+  -webkit-user-select: none;
+  user-select: auto; /* prevent copy paste, to allow, change 'none' to 'text' */
+  background-attachment: fixed;
+  margin: 0 auto; /* center the body horizontally */
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+li {
+  font-size: 18px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 500;
+  color: #ff6060;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-block: 10px;
+  color: $color-tertiary;
+  font-size: 36px;
+  font-weight: 500;
+
+  @media screen and (max-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+h3 {
+  margin-top: 0px;
+  font-size: 18px;
+  font-weight: 500;
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+p {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}

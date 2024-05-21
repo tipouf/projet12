@@ -1,8 +1,10 @@
-# React + Vite
+# Sportsee
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How to use this project:
 
-Currently, two official plugins are available:
+- **Click on the Logo**: it toggles between mocked and real data.
+- **Click on "Accueil"**: it toggles between user 12 and 18.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[BACKEND](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
+[FIGMA](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1)
+[KANBAN](https://www.notion.so/openclassrooms/Copy-of-Dev4U-projet-Learn-Home-6686aa4b5f44417881a4884c9af5669e)
