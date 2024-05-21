@@ -13,7 +13,7 @@ import "./Dashboard.scss";
 
 const Dashboard = () => {
   const { id } = useParams();
-  const { setId, user } = useContext(ApiContext);
+  const { setId, user, mock } = useContext(ApiContext);
 
   useEffect(() => setId(id), [id, setId]);
 
@@ -26,7 +26,7 @@ const Dashboard = () => {
       <div className="dashboard__user">
         <h1>
           Bonjour&nbsp;
-          <span className="dashboard__user__name">{user?.firstName}</span>
+          <span className="dashboard__user__name">{user?.firstName}{mock && " (MOCK)"}</span>
         </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>

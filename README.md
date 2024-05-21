@@ -1,6 +1,9 @@
-##
+# Sportsee
 
+## How to use this project:
 
+- **Click on the Logo**: it toggles between mocked and real data.
+- **Click on "Accueil"**: it toggles between user 12 and 18.
 
 [BACKEND](https://github.com/OpenClassrooms-Student-Center/P9-front-end-dashboard)
 [FIGMA](https://www.figma.com/file/BMomGVZqLZb811mDMShpLu/UI-design-Sportify-FR?node-id=0%3A1)

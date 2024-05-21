@@ -47,7 +47,6 @@ const AverageSessions = () => {
           style={{
             opacity: 0.8,
           }}
-          onMouseMove={(e) => console.log(e)}
         >
           <XAxis
             dataKey="day"
