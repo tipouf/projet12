@@ -5,8 +5,7 @@ import {
   getActivity,
   getPerformance,
   getUser,
-  getMock,
-  getError
+  getMock
 } from "../api/fetchApi";
 
 export const ApiContext = createContext(null);
@@ -24,12 +23,11 @@ export const ApiProvider = ({ children }) => {
   useEffect(() => {
     if (!id) return;
     const fetchData = async () => {
-      const mocked = getMock(mock);
+      getMock(mock);
       const user = await getUser(id);
       const averageSessions = await getAverageSessions(id);
       const activity = await getActivity(id);
       const performance = await getPerformance(id);
-      setMock(mocked);
       setUser(user);
       setAverageSessions(averageSessions);
       setActivity(activity);
@@ -37,7 +35,7 @@ export const ApiProvider = ({ children }) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, mock]);
 
   const value = useMemo(
     () => ({

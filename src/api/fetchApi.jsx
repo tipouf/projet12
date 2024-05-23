@@ -1,22 +1,28 @@
 import FormatData from "../utils/formData.js";
 import mockData from "../api/mock.json";
 
+/**
+ *  Variables
+ */
 
 const url = "http://localhost";
 const port = "3000";
-
 let mock = true;
-// let fetchError = false;
-const getMock = (value) => {
-  if (value === undefined) return mock;
-  mock = value;
-};
 
-// const getError = () => {
-//   console.log("fetchError", fetchError);
-//   return fetchError;
+/**
+ * Sets the mock value.
+ *
+ * @param {boolean} [value=mock] - The new mock value.
+ * @returns mock
+ */
+const getMock = (value = mock) => mock = value;
 
-// }
+/**
+ * Retrieves user data by ID.
+ *
+ * @param {string} id - The ID of the user.
+ * @return {Promise<object>} A Promise that resolves to the formatted user data.
+ */
 const getUser = async (id) => {
   try {
     const mockedUser = mockData.USER_MAIN_DATA.find(
@@ -34,6 +40,12 @@ const getUser = async (id) => {
   }
 };
 
+/**
+ * Retrieves the activity data for a user with the specified ID.
+ *
+ * @param {string} id - The ID of the user.
+ * @return {Promise<object>} A Promise that resolves to the formatted activity data for the user.
+ */
 const getActivity = async (id) => {
   try {
     const mockedActivity = mockData.USER_ACTIVITY.find(
@@ -47,6 +59,12 @@ const getActivity = async (id) => {
   }
 };
 
+/**
+ * Retrieves the average sessions data for a user by ID.
+ *
+ * @param {string} id - The ID of the user.
+ * @return {Promise<object>} A Promise that resolves to the formatted average sessions data.
+ */
 const getAverageSessions = async (id) => {
   try {
     const mockedAverageSessions = mockData.USER_AVERAGE_SESSIONS.find(
@@ -62,6 +80,12 @@ const getAverageSessions = async (id) => {
   }
 };
 
+/**
+ * Retrieves the performance data for a user by ID.
+ *
+ * @param {string} id - The ID of the user.
+ * @return {Promise<object>} A Promise that resolves to the formatted performance data for the user.
+ */
 const getPerformance = async (id) => {
   try {
     const mockedPerformance = mockData.USER_PERFORMANCE.find(
