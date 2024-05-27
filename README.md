@@ -1,4 +1,5 @@
 # Sportsee
+Analytics dashboard
 
 
 ## How to use this project:

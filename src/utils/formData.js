@@ -96,7 +96,7 @@ class FormatData {
   FormatPerformanceData() {
     const { data: dataResponse } = this.data;
 
-    const performance = dataResponse.reverse().map((item) => {
+    const performance = dataResponse.map((item) => {
       return {
         ...item,
         kind: [
@@ -108,7 +108,7 @@ class FormatData {
           "Intensite",
         ][item.kind - 1],
       };
-    });
+    }).reverse();
     return performance;
   }
 }
