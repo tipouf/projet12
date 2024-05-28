@@ -16,36 +16,38 @@ class FormatData {
    */
   FormatUserData() {
     const { userInfos, keyData, todayScore } = this.data;
-    const score = todayScore ?? this.data.score;
+    const score = todayScore || this.data.score;
     return {
       ...userInfos,
       score,
-      keyData: [
-        {
-          id: 1,
-          name: "calorieCount",
-          value: keyData.calorieCount.toLocaleString("en"),
-          icon: hot,
-        },
-        {
-          id: 2,
-          name: "proteinCount",
-          value: keyData.proteinCount,
-          icon: meat,
-        },
-        {
-          id: 3,
-          name: "carbohydrateCount",
-          value: keyData.carbohydrateCount,
-          icon: apple,
-        },
-        {
-          id: 4,
-          name: "lipidCount",
-          value: keyData.lipidCount,
-          icon: burger,
-        },
-      ],
+      keyData: keyData
+        ? [
+            {
+              id: 1,
+              name: "calorieCount",
+              value: keyData.calorieCount ? keyData.calorieCount.toLocaleString("en") : null,
+              icon: hot,
+            },
+            {
+              id: 2,
+              name: "proteinCount",
+              value: keyData.proteinCount ? keyData.proteinCount : null,
+              icon: meat,
+            },
+            {
+              id: 3,
+              name: "carbohydrateCount",
+              value: keyData.carbohydrateCount ? keyData.carbohydrateCount : null,
+              icon: apple,
+            },
+            {
+              id: 4,
+              name: "lipidCount",
+              value: keyData.lipidCount ? keyData.lipidCount : null,
+              icon: burger,
+            },
+          ]
+        : [],
     };
   }
 

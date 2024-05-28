@@ -18,8 +18,6 @@ export const ApiProvider = ({ children }) => {
   const [activity, setActivity] = useState(null);
   const [performance, setPerformance] = useState(null);
 
-  
-
   useEffect(() => {
     if (!id) return;
     const fetchData = async () => {

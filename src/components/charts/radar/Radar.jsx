@@ -1,7 +1,6 @@
 import { useContext, useEffect, useMemo } from "react";
 import { ApiContext } from "../../../providers/useContext";
 import { useParams } from "react-router-dom";
-import PropsTypes from "prop-types";
 import "./Radar.scss";
 import {
   Radar,
@@ -32,6 +31,7 @@ const RadarChartComponent = () => {
       className="radar"
       id="radar"
     >
+      {dataPerformance ? 
       <RadarChart outerRadius="69%" data={dataPerformance}>
         <PolarGrid radialLines={false}
           strokeWidth={2} />
@@ -48,6 +48,7 @@ const RadarChartComponent = () => {
           fill="#FF0101B2"
         />
       </RadarChart>
+      : <div className="no-data">Pas de donnees</div>}
     </ResponsiveContainer>
   );
 };

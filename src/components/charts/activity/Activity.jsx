@@ -46,6 +46,7 @@ const Activity = () => {
   }, [id, setId]);
 
   return (
+    activity ?
     <div className="activity">
       <div className="activity__title">Activité quotidienne</div>
       <div className="legend-container">
@@ -58,7 +59,6 @@ const Activity = () => {
           content={<LegendContent />}
         />
       </div>
-
       <ResponsiveContainer
         width="100%"
         height="80%"
@@ -117,6 +117,8 @@ const Activity = () => {
         </BarChart>
       </ResponsiveContainer>
     </div>
+    :
+    <div className="no-data-activity">Aucune activité</div>
   );
 };
 
