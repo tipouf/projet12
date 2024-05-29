@@ -2,6 +2,7 @@ import "./Score.scss";
 import PropsTypes from "prop-types";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 const Score = ({ todayScore }) => {
+  
   return (
     <div className="score-container">
       <div className="score-container__title">Score</div>

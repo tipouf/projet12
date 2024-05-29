@@ -26,9 +26,9 @@ const Header = () => {
       </button>
       <nav className="nav">
         <Link to={`/user/${user}`} onClick={onChange}>Accueil</Link>
-        <Link to="/profil">Profil</Link>
+        <Link to={`/profil/${user}`} onClick={onChange}>Profil</Link>
         <Link to="/settings">Réglage</Link>
-        <Link to="/communiversity">Communauté</Link>
+        <Link to="/community">Communauté</Link>
       </nav>
     </div>
   );

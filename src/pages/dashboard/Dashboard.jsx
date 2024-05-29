@@ -21,13 +21,13 @@ const Dashboard = () => {
 
   if (!user) return <Error404 />;
 
-
   return (
     <div className="dashboard">
       <div className="dashboard__user">
         <h1>
-          Bonjour&nbsp;
-          <span className="dashboard__user__name">{user?.firstName}{mock && "(MOCK)"}</span>
+          Bonjour{" "}
+          <span className="dashboard__user__name">{user?.firstName}</span>
+          {mock && <span className="dashboard__user__mocked">(mocked)</span>}
         </h1>
         <p>Félicitation ! Vous avez explosé vos objectifs hier 👏</p>
       </div>
@@ -51,7 +51,11 @@ const Dashboard = () => {
               </Link>
             </div>
             <div className="dashboard__activity__graph__stats--card">
-              <Score todayScore={user?.score} />
+              {user?.score ? (
+                <Score todayScore={user?.score} />
+              ) : (
+                <p>Aucune donnée</p>
+              )}
             </div>
           </div>
         </div>

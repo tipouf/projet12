@@ -2,13 +2,14 @@ import PropsTypes from "prop-types";
 
 import "./Card.scss";
 
-const Card = ({ keyData }) => {
+const Card = ({ keyData  }) => {
 
   return (
     <div className="card">
       <div className={`square ${keyData.name}`}>
         <img src={keyData.icon} alt="keyData.icon" />
       </div>
+      { keyData.value ?
       <div className="card__text">
         <p>{keyData.value}{keyData.name === "calorieCount" ? "kCal" : "g"}</p>
         <p>
@@ -22,6 +23,8 @@ const Card = ({ keyData }) => {
         }
       </p>
       </div>
+       : <div className="card__text">Aucune data</div>
+      }
     </div>
   );
 };

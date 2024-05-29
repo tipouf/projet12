@@ -15,7 +15,7 @@ let mock = true;
  * @param {boolean} [value=mock] - The new mock value.
  * @returns mock
  */
-const getMock = (value = mock) => mock = value;
+const getMock = (value = mock) => (mock = value);
 
 /**
  * Retrieves user data by ID.
@@ -25,16 +25,16 @@ const getMock = (value = mock) => mock = value;
  */
 const getUser = async (id) => {
   try {
-    const mockedUser = mockData.USER_MAIN_DATA.find(
-      (user) => user.id.toString() === id.toString()
-    );
-    
-    const response = await (mock ? Promise.resolve(mockedUser) : fetch(`${url}:${port}/user/${id}`));
-    if (response === undefined || response === null) {
-      throw new Error("No data");
-    }
-    const data = mock ? mockedUser : (await response.json()).data;
-    return new FormatData(data).FormatUserData()
+    const data = mock
+      ? mockData.USER_MAIN_DATA.find(
+          (user) => user.id.toString() === id.toString()
+        )
+      : (await fetch(`${url}:${port}/user/${id}`).then((res) => res.json()))
+          .data;
+
+    if (!data) throw new Error("No User data found");
+
+    return new FormatData(data).FormatUserData();
   } catch (error) {
     console.error("error", error);
   }
@@ -48,14 +48,21 @@ const getUser = async (id) => {
  */
 const getActivity = async (id) => {
   try {
-    const mockedActivity = mockData.USER_ACTIVITY.find(
-      (activity) => activity.userId.toString() === id.toString()
-    );
-    const response = await (mock ? Promise.resolve(mockedActivity) : fetch(`${url}:${port}/user/${id}/activity`));
-    const data = mock ? mockedActivity : (await response.json()).data;
+    const data = mock
+      ? mockData.USER_ACTIVITY.find(
+          (activity) => activity.userId.toString() === id.toString()
+        )
+      : (
+          await fetch(`${url}:${port}/user/${id}/activity`).then((res) =>
+            res.json()
+          )
+        ).data;
+
+    if (!data) throw new Error("No Activity data found");
+
     return new FormatData(data).FormatActivityData();
   } catch (error) {
-    console.error("error");
+    console.error("error", error.message);
   }
 };
 
@@ -67,16 +74,22 @@ const getActivity = async (id) => {
  */
 const getAverageSessions = async (id) => {
   try {
-    const mockedAverageSessions = mockData.USER_AVERAGE_SESSIONS.find(
-      (averageSessions) => averageSessions.userId.toString() === id.toString()
-    );
+    const { data } = await (mock
+      ? Promise.resolve({
+          data: mockData.USER_AVERAGE_SESSIONS.find(
+            (averageSessions) =>
+              averageSessions.userId.toString() === id.toString()
+          ),
+        })
+      : await fetch(`${url}:${port}/user/${id}/average-sessions`).then((res) =>
+          res.json()
+        ));
 
-    const response = await (mock ? Promise.resolve(mockedAverageSessions) : fetch(`${url}:${port}/user/${id}/average-sessions`));
-    const data = mock ? mockedAverageSessions : (await response.json()).data;
+    if (!data) throw new Error("No Average Sessions data found");
 
     return new FormatData(data).FormatAverageSessionsData();
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
   }
 };
 
@@ -88,12 +101,15 @@ const getAverageSessions = async (id) => {
  */
 const getPerformance = async (id) => {
   try {
-    const mockedPerformance = mockData.USER_PERFORMANCE.find(
-      (performance) => performance.userId.toString() === id.toString()
-    );
-
-    const response = await (mock ? Promise.resolve(mockedPerformance) : fetch(`${url}:${port}/user/${id}/performance`));
-    const data = mock ? mockedPerformance : (await response.json()).data;
+    const data = mock
+      ? mockData.USER_PERFORMANCE.find(
+          (performance) => performance.userId.toString() === id.toString()
+        )
+      : (
+          await fetch(`${url}:${port}/user/${id}/performance`).then((res) =>
+            res.json()
+          )
+        ).data;
 
     return new FormatData(data).FormatPerformanceData();
   } catch (error) {

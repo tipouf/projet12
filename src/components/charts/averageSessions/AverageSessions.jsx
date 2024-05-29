@@ -36,6 +36,7 @@ const AverageSessions = () => {
         className="average-sessions"
         id="average-sessions"
       >
+        {averageSessions ? 
         <LineChart
           data={averageSessions}
           margin={{
@@ -63,6 +64,7 @@ const AverageSessions = () => {
             strokeWidth={2}
           />
         </LineChart>
+        : <div className="no-data">Aucune donnée</div>}
       </ResponsiveContainer>
     </div>
   );
