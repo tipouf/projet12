@@ -18,12 +18,6 @@ const RadarChartComponent = () => {
     setId(id);
   }, [id, setId]);
 
-  const dataPerformance = useMemo(() => {
-    if (!performance) return null;
-    return performance
-  }, [performance]);
-
-
   return (
     <ResponsiveContainer
       width="100%"
@@ -31,8 +25,8 @@ const RadarChartComponent = () => {
       className="radar"
       id="radar"
     >
-      {dataPerformance ? 
-      <RadarChart outerRadius="69%" data={dataPerformance}>
+      {performance ? 
+      <RadarChart outerRadius="69%" data={performance}>
         <PolarGrid radialLines={false}
           strokeWidth={2} />
         <PolarAngleAxis
@@ -42,7 +36,6 @@ const RadarChartComponent = () => {
           dy={4}
           style={{ fontSize: '12px' }}
         />
-        <PolarRadiusAxis tick={false} axisLine={false} />
         <Radar
           dataKey="value"
           fill="#FF0101B2"
